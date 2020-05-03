@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+}
+.name {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #009;
+}
+.error {
+    font-weight: bold;
+    color: #C00;
+}
+#results {
+    border: medium solid #390;
+    display: none;
+    padding-left: 10px;
+    width: 300px;
+}

@@ -1,0 +1,30 @@
+<html>
+  <head>
+		<style type="text/css" media="all">@import "style.css";</style>
+    <script>
+    // The next line document.addEventListener....
+    // tells the browser to execute the javascript in the function after
+    // the DOMContentLoaded event is complete, i.e. the browser has
+    // finished loading the full webpage
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      var col1 = ["Full time student checking (Age 22 and under) ", "Customers over age 65", "Below  $500.00" ];
+      var col2 = ["None", "None", "$8.00"];
+      var TheInnerHTML ="";
+      for (var j = 0; j < col1.length; j++) {
+        TheInnerHTML += "<tr><td>"+col1[j]+"</td><td>"+col2[j]+"</td></tr>";
+    }
+    document.getElementById("TheBody").innerHTML = TheInnerHTML;});
+    </script>
+  </head>
+  <body>
+    <table>
+    <thead>
+      <tr>
+        <th>Balance</th>
+        <th>Fee</th>        
+      </tr>
+    </thead>
+    <tbody id="TheBody">
+    </tbody>
+  </table>
+</body>

@@ -1,0 +1,44 @@
+Scratch Pad
+
+	<form onsubmit="fillCanvas(500, 90);">
+		Enter name: <input type="text">
+		<input type="submit">
+	</form>
+
+
+	ctx.moveTo(300, 200);
+	ctx.lineTo(400, 400);
+	ctx.stroke();
+
+	ctx.beginPath();
+	ctx.arc(95, 400, 40, 0, 2 * Math.PI);
+	ctx.stroke();
+
+	// Create gradient
+	var grd = ctx.createLinearGradient(0, 0, 200, 0);
+	grd.addColorStop(0, "blue");
+	grd.addColorStop(1, "white");
+
+	// Fill with gradient
+	ctx.fillStyle = grd;
+	ctx.fillRect(10, 200, 150, 80);
+
+
+
+	<br>Enter Width: <input id="UseWidth" type="text">
+	<br>Enter Height: <input id="UserHeight" type="text">
+
+
+	var userWidth = document.getElementById("UserWidth").value;
+	var userHeight = document.getElementById("UserHeight").value;
+	
+	var drawWidth = parseInt(userWidth);
+	var drawHeight = parseInt(userHeight);
+
+
+	
+	<br>Enter Color: <input id="UserColor" type="text">
+	<br><button onclick="drawCanvas();return true;">Draw Canvas</button> 
+
+	var userColor = document.getElementById("UserColor").value;
+
