@@ -7,23 +7,42 @@
 </head>
 <body>
 
-	<label for="UserColor">Choose a color:</label>
-	<select id="UserColor">
-		<option value="red">Red</option>
-		<option value="green">Green</option>
-		<option value="blue">Blue</option>
-		<option value="yellow">Yellow</option>
-		<option value="purple">Purple</option>
-		<option value="orange">Orange</option>
-	</select>
-
-	<br><button onclick="drawCanvas();return true;">Draw Canvas</button> 
+	<fieldset>
+		<p>
+			<label for="UserShape">Choose Shape: </label>
+			<select id="UserShape">
+				<option value="rectangle">Rectangle</option>
+				<option value="circle">Circle</option>
+			</select>
+		</p>
+		<p>
+			<label for="UserWidth">Width: </label>
+			<input id="UserWidth" type="text" />
+		</p>
+		<p>
+			<label for="UserHeight">Height: </label>
+			<input id="UserHeight" type="text" />
+		</p>
+		<p>
+			<label for="UserColor">Choose Color: </label>
+			<select id="UserColor">
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+				<option value="yellow">Yellow</option>
+				<option value="purple">Purple</option>
+				<option value="orange">Orange</option>
+			</select>
+		</p>
+		<p>
+			<label> </label>
+			<button class="button button4" onclick="drawCanvas();return true;">Draw Canvas</button> 
+		</p>
+	</fieldset>
 
 	<br>
 	<p>Drawing Canvas</p>
-	<canvas id="MainCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
-
-	</form>
+	<canvas id="MainCanvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
 
 </body>
 </html>

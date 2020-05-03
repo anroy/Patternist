@@ -29,11 +29,6 @@ Scratch Pad
 	<br>Enter Height: <input id="UserHeight" type="text">
 
 
-	var userWidth = document.getElementById("UserWidth").value;
-	var userHeight = document.getElementById("UserHeight").value;
-	
-	var drawWidth = parseInt(userWidth);
-	var drawHeight = parseInt(userHeight);
 
 
 	
