@@ -35,15 +35,15 @@ fieldset label {
 }
 
 .button {
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(160, 160, 160);
     border: none;
     color: white;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 4px;
   }
 
 .button1 {border-radius: 2px;}
@@ -51,4 +51,3 @@ fieldset label {
 .button3 {border-radius: 8px;}
 .button4 {border-radius: 12px;}
 .button5 {border-radius: 50%;}
-

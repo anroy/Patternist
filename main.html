@@ -4,6 +4,10 @@
 	<title>Pattern Software</title>
 	<style type="text/css" media="all">@import "style.css";</style>
 	<script type="text/javascript" src='main.js'> </script>
+	<script type = "text/javascript">
+	function selectShapeChange() {
+	}
+	 </script> 
 </head>
 <body>
 
@@ -15,6 +19,7 @@
 				<option value="circle">Circle</option>
 			</select>
 		</p>
+
 		<p>
 			<label for="UserWidth">Width: </label>
 			<input id="UserWidth" type="text" />
@@ -23,6 +28,7 @@
 			<label for="UserHeight">Height: </label>
 			<input id="UserHeight" type="text" />
 		</p>
+
 		<p>
 			<label for="UserColor">Choose Color: </label>
 			<select id="UserColor">
@@ -34,15 +40,54 @@
 				<option value="orange">Orange</option>
 			</select>
 		</p>
+
 		<p>
 			<label> </label>
 			<button class="button button4" onclick="drawCanvas();return true;">Draw Canvas</button> 
 		</p>
+
 	</fieldset>
 
-	<br>
-	<p>Drawing Canvas</p>
-	<canvas id="MainCanvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
+	<fieldset>
+	<p>
+		<label for="UserFile">Select a JPG or PNG file:</label>
+		<input id="UserFile" type="file" accept = "image/*" name="userFile">
+	</p>
+	</fieldset>
+
+	<p>
+		Drawing Canvas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="button button4" onclick="clearCanvas();return true;">Clear Canvas</button>
+	</p>
+	<canvas id="MainCanvas" width="600" height="600" style="border:1px solid #000000;">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+
+	<script type="text/javascript">
+		function el(id){return document.getElementById(id);} // Get elem by ID
+
+		var canvas = el("MainCanvas");
+		var ctx = canvas.getContext("2d");
+
+		function readImage() {
+			//alert("Entered readImage");
+			if ( this.files && this.files[0] ) {
+				var FR= new FileReader();
+				FR.onload = function(e) {
+				var img = new Image();
+				img.addEventListener("load", function() {
+					//ctx.drawImage(img, 0, 0);
+					drawImage(canvas, ctx, img);
+				});
+				img.src = e.target.result;
+				};
+				FR.readAsDataURL( this.files[0] );
+			}
+		}
+
+		// When a selection is made the "change" event will be fired
+		el("UserFile").addEventListener("change", readImage, false);
+	</script>
 
 </body>
 </html>
