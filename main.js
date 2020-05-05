@@ -1,6 +1,6 @@
 function drawCanvas() {
 	// Initialize canvas variables
-	const canvas = document.getElementById("MainCanvas");
+	const canvas = el("MainCanvas");
 	const ctx = canvas.getContext("2d");
 
 	var userShape;
@@ -8,15 +8,15 @@ function drawCanvas() {
 	var userHeight, height;
 
 	// Get user parameters
-	userShape = document.getElementById("UserShape").value;
-	userWidth = document.getElementById("UserWidth").value;
+	userShape = el("UserShape").value;
+	userWidth = el("UserWidth").value;
 	width = parseInt(userWidth);
-	ctx.fillStyle = document.getElementById("UserColor").value;
+	ctx.fillStyle = el("UserColor").value;
 
 	switch(userShape)
 	{
 		case "rectangle":
-			userHeight = document.getElementById("UserHeight").value;
+			userHeight = el("UserHeight").value;
 			height = parseInt(userHeight);
 			drawRectangle(canvas, ctx, width, height);
 			break;
@@ -63,10 +63,25 @@ function drawCircle(canvas, ctx, radius) {
 	}
 }
 
+function readImage() {
+	//alert("Entered readImage");
+	const canvas = el("MainCanvas");
+	const ctx = canvas.getContext("2d");
+
+	if ( this.files && this.files[0] ) {
+		var FR= new FileReader();
+		FR.onload = function(e) {
+		var img = new Image();
+		img.addEventListener("load", function() {
+			drawImage(canvas, ctx, img);
+		});
+		img.src = e.target.result;
+		};
+		FR.readAsDataURL( this.files[0] );
+	}
+}
+
 function drawImage(canvas, ctx, img) {
-	//var img = document.getElementById("LocalFile");
-	//alert(img.width);
-	//alert(img.height);
 	var horizCnt = canvas.width / img.width;
 	var vertCnt = canvas.height / img.height;
 	var i, j;
@@ -83,9 +98,11 @@ function drawImage(canvas, ctx, img) {
 
 function clearCanvas() {
 	// Initialize canvas variables
-	const canvas = document.getElementById("MainCanvas");
+	const canvas = el("MainCanvas");
 	const ctx = canvas.getContext("2d");
 
 	// clear
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+function el(id) {return document.getElementById(id);}

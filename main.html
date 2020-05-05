@@ -5,7 +5,7 @@
 	<style type="text/css" media="all">@import "style.css";</style>
 	<script type="text/javascript" src='main.js'> </script>
 	<script type = "text/javascript">
-	function selectShapeChange() {
+	function myFunc() {
 	}
 	 </script> 
 </head>
@@ -64,27 +64,6 @@
 	</canvas>
 
 	<script type="text/javascript">
-		function el(id){return document.getElementById(id);} // Get elem by ID
-
-		var canvas = el("MainCanvas");
-		var ctx = canvas.getContext("2d");
-
-		function readImage() {
-			//alert("Entered readImage");
-			if ( this.files && this.files[0] ) {
-				var FR= new FileReader();
-				FR.onload = function(e) {
-				var img = new Image();
-				img.addEventListener("load", function() {
-					//ctx.drawImage(img, 0, 0);
-					drawImage(canvas, ctx, img);
-				});
-				img.src = e.target.result;
-				};
-				FR.readAsDataURL( this.files[0] );
-			}
-		}
-
 		// When a selection is made the "change" event will be fired
 		el("UserFile").addEventListener("change", readImage, false);
 	</script>
