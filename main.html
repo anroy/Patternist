@@ -12,21 +12,19 @@
 <body>
 
 	<fieldset>
+		<h3>Shape-based Patterns</h3>
 		<p>
 			<label for="UserShape">Choose Shape: </label>
 			<select id="UserShape">
-				<option value="rectangle">Rectangle</option>
+				<option value="square">Square</option>
 				<option value="circle">Circle</option>
+				<option value="triangle">Triangle</option>
 			</select>
 		</p>
 
 		<p>
-			<label for="UserWidth">Width: </label>
-			<input id="UserWidth" type="text" />
-		</p>
-		<p>
-			<label for="UserHeight">Height: </label>
-			<input id="UserHeight" type="text" />
+			<label for="UserSize">Size (pixels): </label>
+			<input id="UserSize" type="text" />
 		</p>
 
 		<p>
@@ -49,16 +47,39 @@
 	</fieldset>
 
 	<fieldset>
+	<h3>Image-based Patterns</h3>
+
+	<h4>Specify angles for first 2 rows and columns:</h4>
+	<table id="angles" class="display">
+		<tbody>
+			<tr>
+				<td></td>
+				<td>Column 1</td>
+				<td>Column 2</td>
+			</tr>
+
+			<tr>
+				<td>Row 1</td>
+				<td><input id="angle11" type="number" step="90" min="0" max="270" value="0"></td>
+				<td><input id="angle12" type="number" step="90" min="0" max="270" value="0"></td>
+			</tr>
+
+			<tr>
+				<td>Row 2</td>
+				<td><input id="angle21" type="number" step="90" min="0" max="270" value="0"></td>
+				<td><input id="angle22" type="number" step="90" min="0" max="270" value="0"></td>
+			</tr>
+		</tbody>
+	</table>
+
 	<p>
 		<label for="UserFile">Select a JPG or PNG file:</label>
 		<input id="UserFile" type="file" accept = "image/*" name="userFile">
 	</p>
 	</fieldset>
 
-	<p>
-		Drawing Canvas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="button button4" onclick="clearCanvas();return true;">Clear Canvas</button>
-	</p>
+	<h3>Drawing Canvas</h3>
+	<button class="button button4" onclick="clearCanvas();return true;">Clear Canvas</button><br>
 	<canvas id="MainCanvas" width="600" height="600" style="border:1px solid #000000;">
 		Your browser does not support the HTML5 canvas tag.
 	</canvas>

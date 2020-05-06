@@ -1,6 +1,11 @@
 body {
     font-family: sans-serif;
 }
+
+h3 {
+    color: blue;
+}
+  
 .name {
     font-weight: bold;
     text-transform: uppercase;
