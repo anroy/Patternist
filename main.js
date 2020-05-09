@@ -113,6 +113,9 @@ function readImage() {
 }
 
 function drawImage(canvas, ctx, img) {
+
+	angle11 = parseInt(el("angle11").value);
+
 	var horizCnt = canvas.width / img.width;
 	var vertCnt = canvas.height / img.height;
 	var i, j;
@@ -123,17 +126,29 @@ function drawImage(canvas, ctx, img) {
 		for (i = 0; i < horizCnt; i++) {
 			xPos = img.width * i;
 			yPos = img.height * j;
-			ctx.save();
-			//ctx.setTransform(1,0,0,1,0,0);
-			ctx.translate( xPos + (0.5 * img.width), yPos + (0.5 * img.height));
-			ctx.rotate(Math.PI/2);
-			ctx.drawImage(img, xPos, yPos);
 
-			ctx.strokeStyle = "red";
-			coordText = j.toString() + "," + i.toString();
-			ctx.fillText(coordText, xPos + (img.width * 0.4), yPos + (img.height * 0.7));
+			if(angle11 > 0) {
+				ctx.save();
 
-			ctx.restore();
+				//ctx.setTransform(1,0,0,1,0,0);
+				ctx.translate( xPos + (0.5 * img.width), yPos + (0.5 * img.height));
+				ctx.rotate(Math.PI/2);
+				ctx.drawImage(img, xPos, yPos);
+
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, xPos + (img.width * 0.4), yPos + (img.height * 0.2));
+
+				ctx.restore();
+			}
+			else {
+				ctx.drawImage(img, xPos, yPos);
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, xPos + (img.width * 0.4), yPos + (img.height * 0.2));
+			}
 		}
 	}
 }
