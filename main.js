@@ -77,6 +77,7 @@ function drawTriangle(canvas, ctx, size) {
 }
 
 function drawCircle(canvas, ctx, radius) {
+	//alert("Enter drawCircle");
 	var diameter = radius * 2;
 	var horizCnt = canvas.width / (diameter+10);
 	var vertCnt = canvas.height / (diameter+10);
@@ -113,6 +114,83 @@ function readImage() {
 }
 
 function drawImage(canvas, ctx, img) {
+	//alert("Entered drawImage");
+	angle11 = parseInt(el("angle11").value);
+
+	var horizCnt = canvas.width / img.width;
+	var vertCnt = canvas.height / img.height;
+	var i, j;
+	var xPos, yPos;
+	var coordText;
+
+	for (j = 0; j < vertCnt; j++) {
+		for (i = 0; i < horizCnt; i++) {
+			xPos = img.width * i;
+			yPos = img.width * j;
+
+			if(angle11 == 90) {
+				//alert("Entered drawImage rotate 90 block");
+				ctx.save();
+	
+				ctx.translate(img.width * (i+1), img.width * (j));
+				ctx.rotate(Math.PI/2);
+				ctx.drawImage(img, 0, 0);
+
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
+
+				ctx.restore();
+			}
+			else if(angle11 == 180) {
+				//alert("Entered drawImage rotate 180 block");
+				ctx.save();
+	
+				ctx.translate(img.width * (i+1), img.width * (j+1));
+				ctx.rotate(Math.PI);
+				ctx.drawImage(img, 0, 0);
+
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
+
+				ctx.restore();
+			}
+			else if(angle11 == 270) {
+				//alert("Entered drawImage rotate 270 block");
+				ctx.save();
+	
+				ctx.translate(img.width * (i), img.width * (j+1));
+				//ctx.translate(100,100);
+				ctx.rotate(( 3.0/2.0) * Math.PI);
+				ctx.drawImage(img, 0, 0);
+
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
+
+				ctx.restore();
+			}
+
+			else {
+				//alert("Entered drawImage no rotate block");
+				ctx.drawImage(img, xPos, yPos);
+
+				ctx.font = "bold 16px Verdana";
+				ctx.fillStyle = "red";
+				coordText = j.toString() + "," + i.toString();
+				ctx.fillText(coordText, xPos + (img.width * 0.4), yPos + (img.height * 0.2));
+			}
+
+
+		}
+	}
+}
+
+function drawImage_Loop(canvas, ctx, img) {
 
 	angle11 = parseInt(el("angle11").value);
 
@@ -160,6 +238,9 @@ function clearCanvas() {
 
 	// clear
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// clear UserFile so that next selection fires a change event
+	el("UserFile").value = "";
 }
 
 function el(id) {return document.getElementById(id);}
