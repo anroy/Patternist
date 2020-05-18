@@ -116,78 +116,84 @@ function readImage() {
 function drawImage(canvas, ctx, img) {
 	//alert("Entered drawImage");
 	angle11 = parseInt(el("angle11").value);
+	angle12 = parseInt(el("angle12").value);
+	angle21 = parseInt(el("angle21").value);
+	angle22 = parseInt(el("angle22").value);
 
 	var horizCnt = canvas.width / img.width;
 	var vertCnt = canvas.height / img.height;
 	var i, j;
 	var xPos, yPos;
-	var coordText;
+	var rotationAngle;
+	var iMod, jMod;
 
 	for (j = 0; j < vertCnt; j++) {
 		for (i = 0; i < horizCnt; i++) {
 			xPos = img.width * i;
 			yPos = img.width * j;
 
-			if(angle11 == 90) {
-				//alert("Entered drawImage rotate 90 block");
-				ctx.save();
-	
-				ctx.translate(img.width * (i+1), img.width * (j));
-				ctx.rotate(Math.PI/2);
-				ctx.drawImage(img, 0, 0);
+			iMod = i % 2;
+			jMod = j % 2;
 
-				ctx.font = "bold 16px Verdana";
-				ctx.fillStyle = "red";
-				coordText = j.toString() + "," + i.toString();
-				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
-
-				ctx.restore();
+			if( jMod == 0 ) {
+				if( iMod == 0 ) {
+					rotationAngle = angle11;
+				}
+				else{
+					rotationAngle = angle12;
+				}
 			}
-			else if(angle11 == 180) {
-				//alert("Entered drawImage rotate 180 block");
-				ctx.save();
-	
-				ctx.translate(img.width * (i+1), img.width * (j+1));
-				ctx.rotate(Math.PI);
-				ctx.drawImage(img, 0, 0);
-
-				ctx.font = "bold 16px Verdana";
-				ctx.fillStyle = "red";
-				coordText = j.toString() + "," + i.toString();
-				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
-
-				ctx.restore();
-			}
-			else if(angle11 == 270) {
-				//alert("Entered drawImage rotate 270 block");
-				ctx.save();
-	
-				ctx.translate(img.width * (i), img.width * (j+1));
-				//ctx.translate(100,100);
-				ctx.rotate(( 3.0/2.0) * Math.PI);
-				ctx.drawImage(img, 0, 0);
-
-				ctx.font = "bold 16px Verdana";
-				ctx.fillStyle = "red";
-				coordText = j.toString() + "," + i.toString();
-				ctx.fillText(coordText, (img.width * 0.4), (img.height * 0.2));
-
-				ctx.restore();
+			else{
+				if( iMod == 0 ) {
+					rotationAngle = angle21;
+				}
+				else{
+					rotationAngle = angle22;
+				}
 			}
 
-			else {
-				//alert("Entered drawImage no rotate block");
+			if(rotationAngle == 0) {
 				ctx.drawImage(img, xPos, yPos);
-
-				ctx.font = "bold 16px Verdana";
-				ctx.fillStyle = "red";
-				coordText = j.toString() + "," + i.toString();
-				ctx.fillText(coordText, xPos + (img.width * 0.4), yPos + (img.height * 0.2));
+				//debugAnnotate(ctx, i, j, xPos + (img.width * 0.4), yPos + (img.height * 0.2));
 			}
+			else{
+				ctx.save();
+	
+				switch(rotationAngle)
+				{
+					case 90:
+						ctx.translate(img.width * (i+1), img.width * (j));
+						break;
+			
+					case 180:
+						ctx.translate(img.width * (i+1), img.width * (j+1));
+						break;
+			
+					case 270:
+						ctx.translate(img.width * (i), img.width * (j+1));
+						break;
+				
+					default:
+						break;
+				}
+			
+				ctx.rotate(Math.PI * (rotationAngle/180.0));
+				ctx.drawImage(img, 0, 0);
+				//debugAnnotate(ctx, i, j, (img.width * 0.4), (img.height * 0.2));
 
+				ctx.restore();
+
+			}
 
 		}
 	}
+}
+
+function debugAnnotate(ctx, i, j, xPos, yPos) {
+	ctx.font = "bold 16px Verdana";
+	ctx.fillStyle = "red";
+	coordText = j.toString() + "," + i.toString();
+	ctx.fillText(coordText, xPos, yPos);
 }
 
 function drawImage_Loop(canvas, ctx, img) {
